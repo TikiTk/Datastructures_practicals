@@ -1,0 +1,70 @@
+import java.util.Random;
+public class QuickSort{
+	
+
+    public void quicksort(int[] a, int p, int r)
+    {
+        if(p<r)
+        {
+            int q=partition(a,p,r);
+            quicksort(a,p,q);
+            quicksort(a,q+1,r);
+        }
+    }
+	private void swap(int A[], int j, int i){
+		int temp = A[j];
+		A[j] = A[i];
+		A[i] = temp;}
+	private int partition(int[] a, int p, int r) {
+
+        int x = a[p];
+        int i = p-1 ;
+        int j = r+1 ;
+
+        while (true) {
+            i++;
+            while ( i< r && a[i] < x)
+                i++;
+            j--;
+            while (j>p && a[j] > x)
+                j--;
+
+            if (i < j)
+                swap(a, i, j);
+            else
+                return j;
+        }
+    }
+
+    
+
+	public int[] makeArray(int n){
+		int arr[] = new int[n];
+		Random gen = new Random();
+		for(int i = 0; i < n;i++)
+			arr[i] = i+1;
+		
+		for(int i = 0; i < n; i++){
+			int randomInt =gen.nextInt((n+1)-i);
+			
+			swap(arr,randomInt,i);}
+		return arr;
+}
+
+	public static void main(String [] args){
+		QuickSort obj = new QuickSort();
+		
+	
+		int C[] = obj.makeArray(21);
+		//for(int i = 0; i < C.length; i++)
+		//	System.out.print(C[i]+" ");
+		//int B[] = {3,4,5,1,1};
+		obj.quicksort(C,0,C.length-1);
+		for(int i = 0; i < C.length; i++)
+			System.out.print(C[i]+" ");
+		
+		//System.out.print(C[C.length/2]);
+}
+		}
+
+		
